@@ -1,18 +1,10 @@
-name: Build ESP8266
+[env:d1_mini]
+platform = espressif8266@3.2.0
+board = d1_mini
+framework = arduino
+monitor_speed = 115200
 
-on:
-  push:
-  workflow_dispatch:
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-      - run: pip install platformio
-      - run: pio run
-      - uses: actions/upload-artifact@v3
-        with:
-          name: firmware
-          path: .pio/build/d1_mini/firmware.bin
+lib_deps =
+    ESP8266WiFi
+    DNSServer
+    ESP8266WebServer
